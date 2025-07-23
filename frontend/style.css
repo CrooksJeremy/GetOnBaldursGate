@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+    display: flex; /* Use Flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    min-height: 100vh; /* Make body at least the height of the viewport */
+    margin: 0; /* Remove default margin */
+    font-family: 'Cinzel', serif; /* Medieval-style font */
+    background-color: #3b2f2f; /* Dark brown background */
+    background-image: url('/path/to/parchment-texture.jpg'); /* Parchment texture */
+    background-size: cover; /* Cover entire viewport */
+    background-repeat: no-repeat; /* Prevent tiling */
+    color: #f5deb3; /* Wheat text color */
+    padding: 20px; /* Space around content */
+    background-attachment: fixed; /* Fix parchment texture for immersive scrolling */
+}
+
+h1, h2 {
+    color: #d4af37; /* Gold text color */
+    text-align: center; /* Center-align text */
+    font-family: 'Cinzel Decorative', serif; /* Decorative medieval font */
+    text-shadow: 2px 2px 4px #000; /* Subtle shadow for better readability */
+}
+
+.container {
+    width: 100%; /* Full width */
+    max-width: 800px; /* Limit to 800px for readability */
+    margin: 0 auto; /* Center container horizontally */
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black overlay */
+    border: 2px solid #d4af37; /* Gold border */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+}
+
+/* Form Styling */
+form {
+    background: rgba(59, 47, 47, 0.9); /* Dark brown with slight transparency */
+    padding: 20px; /* Inner spacing */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    margin-bottom: 20px; /* Space below form */
+    width: 100%; /* Take full width of container */
+    border: 2px solid #d4af37; /* Gold border */
+}
+
+form label {
+    display: block; /* Make label take up full line */
+    margin-bottom: 8px; /* Space below label */
+    font-weight: bold; /* Bold text for label */
+    color: #f5deb3; /* Wheat text color */
+}
+
+form input[type="time"],
+form select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Space inside input */
+    margin-bottom: 15px; /* Space below each input */
+    border: 2px solid #d4af37; /* Gold border */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 16px; /* Base font size */
+    background-color: #3b2f2f; /* Dark brown background */
+    color: #f5deb3; /* Wheat text color */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); /* Inner shadow for texture */
+}
+
+form button {
+    background-color: #8b0000; /* Deep red */
+    color: #fff; /* White text */
+    border: 2px solid #d4af37; /* Gold border */
+    padding: 10px 15px; /* Space inside button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    font-size: 16px; /* Base font size */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    font-family: 'Cinzel', serif; /* Medieval-style font */
+    text-shadow: 1px 1px 2px #000; /* Subtle shadow for button text */
+}
+
+form button:hover {
+    background-color: #660000; /* Darker red on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Shadow on hover for depth */
+}
+
+/* Table Styling */
+table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Remove spacing between cells */
+    margin-top: 20px; /* Space above table */
+    background: rgba(59, 47, 47, 0.9); /* Dark brown with slight transparency */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+    border: 2px solid #d4af37; /* Gold border */
+}
+
+table th, table td {
+    padding: 12px 15px; /* Space inside cells */
+    text-align: left; /* Left-align text */
+    border-bottom: 1px solid #ddd; /* Light gray bottom border */
+}
+
+table th {
+    background-color: #8b0000; /* Deep red */
+    color: #fff; /* White text */
+    font-weight: bold; /* Bold headings */
+    border-bottom: 2px solid #d4af37; /* Gold border */
+    text-shadow: 1px 1px 2px #000; /* Subtle shadow for header text */
+}
+
+table td {
+    color: #f5deb3; /* Wheat text color */
+    text-shadow: 1px 1px 2px #000; /* Subtle shadow for cell text */
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(59, 47, 47, 0.8); /* Slightly lighter dark brown */
+    border-left: 2px solid #d4af37; /* Gold border for visual separation */
+}
+
+table tr:hover {
+    background-color: rgba(102, 51, 51, 0.9); /* Dark reddish-brown on hover */
+    border-left: 2px solid #8b0000; /* Deep red border on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduce body padding on smaller screens */
+    }
+
+    form input[type="time"],
+    form select {
+        font-size: 14px; /* Slightly smaller text */
+        background-color: #3b2f2f; /* Dark brown background */
+    }
+
+    form button {
+        font-size: 14px; /* Smaller button text */
+        padding: 8px 12px; /* Tighter button padding */
+        background-color: #8b0000; /* Deep red */
+    }
+
+    table th, table td {
+        font-size: 14px; /* Smaller table text */
+        padding: 10px; /* Tighter cell padding */
+        color: #f5deb3; /* Wheat text color */
+        text-shadow: none; /* Remove shadow for smaller screens */
+    }
+}

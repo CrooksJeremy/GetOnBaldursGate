@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /> <!-- Character encoding set to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Makes the site responsive -->
+  <title>Baldur's Gate Vote</title> <!-- Title shown in browser tab -->
+  <link rel="stylesheet" href="style.css" /> <!-- Link to external CSS file -->
+</head>
+<body>
+  <h1>Baldur’s Gate: Vote for Play Time</h1> <!-- Main page heading -->
+
+  <!-- Voting form -->
+  <form id="vote-form">
+    <!-- Name dropdown -->
+    <label for="name">Name:</label>
+    <select id="name" required> <!-- Dropdown for selecting name -->
+      <option value="">Select</option> <!-- Default placeholder option -->
+      <option value="Ibrahim">Ibrahim</option>
+      <option value="Jeremy">Jeremy</option>
+      <option value="Elias">Elias</option>
+      <option value="Mikey">Mikey</option>
+    </select>
+
+    <!-- Day dropdown -->
+    <label for="day">Day:</label>
+    <select id="day" required> <!-- Dropdown for selecting day -->
+      <option value="">Select</option> <!-- Default placeholder option -->
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+      <option>Saturday</option>
+      <option>Sunday</option>
+    </select>
+
+    <!-- Time input -->
+    <label for="time">Time:</label>
+    <input type="time" id="time" required /> <!-- Input for selecting time -->
+
+    <!-- Submit button -->
+    <button type="submit">Submit Vote</button> <!-- Triggers form submission -->
+  </form>
+
+  <h2>Current Votes</h2> <!-- Heading for the vote summary table -->
+
+  <!-- Table displaying all submitted votes -->
+  <table id="summary">
+    <thead>
+      <tr>
+        <th>Name</th> <!-- Column for name -->
+        <th>Day</th> <!-- Column for day -->
+        <th>Time</th> <!-- Column for time -->
+      </tr>
+    </thead>
+    <tbody id="vote-list"></tbody> <!-- Table body will be populated with votes dynamically -->
+  </table>
+
+  <script src="script.js"></script> <!-- Link to external JavaScript file -->
+</body>
+</html>

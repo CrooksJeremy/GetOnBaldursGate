@@ -1,0 +1,19 @@
+// Generator block tells Prisma to generate the Prisma Client
+generator client {
+  provider = "prisma-client-js" // Use the JavaScript/TypeScript Prisma Client
+}
+
+// Datasource block configures the connection to the database
+datasource db {
+  provider = "postgresql" // Specify PostgreSQL as the database provider
+  url      = env("DATABASE_URL") // Load the connection URL from environment variables
+}
+
+// Define the Vote model (table) structure
+model Vote {
+  id        Int      @id @default(autoincrement()) // Primary key, auto-incrementing integer
+  name      String // Name of the voter
+  day       String // Selected day
+  time      String // Selected time
+  createdAt DateTime @default(now()) // Timestamp when the vote was created, defaults to current time
+}
