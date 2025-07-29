@@ -1,43 +1,51 @@
-// Wait for the DOM to fully load before running the script
+// main.js
+const supabase = require('../supabaseClient.js');
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Get references to the form and vote list elements
   const form = document.getElementById('vote-form');
   const voteList = document.getElementById('vote-list');
-  const API_BASE = 'http://localhost:3001/api/votes'; // Base URL for the API
 
-  // Function to fetch and display the current list of votes
+  // Load and display votes from Supabase
   async function loadVotes() {
-    const res = await fetch(API_BASE); // Send GET request to fetch votes
-    const votes = await res.json(); // Parse response as JSON
-    voteList.innerHTML = ''; // Clear existing rows in the vote list
+    const { data: votes, error } = await supabase
+      .from('Vote') // ← match table name (case-sensitive if quoted in schema)
+      .select('*')
+      .order('createdAt', { ascending: false });
 
-    // Loop through each vote and add a new row to the table
+    if (error) {
+      console.error('Error loading votes:', error.message);
+      return;
+    }
+
+    voteList.innerHTML = ''; // Clear existing rows
+
     votes.forEach(({ name, day, time }) => {
-      const row = document.createElement('tr'); // Create a new table row
-      row.innerHTML = `<td>${name}</td><td>${day}</td><td>${time}</td>`; // Insert vote data into the row
-      voteList.appendChild(row); // Add the row to the vote list
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${name}</td><td>${day}</td><td>${time}</td>`;
+      voteList.appendChild(row);
     });
   }
 
-  // Event listener for form submission
+  // Handle vote form submission
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
 
-    // Get input values from the form
     const name = document.getElementById('name').value;
     const day = document.getElementById('day').value;
     const time = document.getElementById('time').value;
 
-    // Send POST request to submit the new vote
-    await fetch(API_BASE, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }, // Send data as JSON
-      body: JSON.stringify({ name, day, time }), // Convert vote data to JSON string
-    });
+    const { error } = await supabase
+      .from('Vote')
+      .insert([{ name, day, time }]);
 
-    form.reset(); // Clear the form inputs
-    loadVotes(); // Reload the vote list to include the new vote
+    if (error) {
+      console.error('Error submitting vote:', error.message);
+      return;
+    }
+
+    form.reset();
+    loadVotes();
   });
 
-  loadVotes(); // Load the vote list when the page first loads
+  loadVotes(); // On page load
 });
