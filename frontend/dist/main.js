@@ -13,9 +13,10 @@
 /*!****************************!*\
   !*** ./frontend/script.js ***!
   \****************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("{// main.js\nconst supabase = __webpack_require__(/*! ../supabaseClient.js */ \"./supabaseClient.js\");\n\ndocument.addEventListener('DOMContentLoaded', () => {\n  const form = document.getElementById('vote-form');\n  const voteList = document.getElementById('vote-list');\n\n  // Load and display votes from Supabase\n  async function loadVotes() {\n    const { data: votes, error } = await supabase\n      .from('Vote') // ← match table name (case-sensitive if quoted in schema)\n      .select('*')\n      .order('createdAt', { ascending: false });\n\n    if (error) {\n      console.error('Error loading votes:', error.message);\n      return;\n    }\n\n    voteList.innerHTML = ''; // Clear existing rows\n\n    votes.forEach(({ name, day, time }) => {\n      const row = document.createElement('tr');\n      row.innerHTML = `<td>${name}</td><td>${day}</td><td>${time}</td>`;\n      voteList.appendChild(row);\n    });\n  }\n\n  // Handle vote form submission\n  form.addEventListener('submit', async (e) => {\n    e.preventDefault();\n\n    const name = document.getElementById('name').value;\n    const day = document.getElementById('day').value;\n    const time = document.getElementById('time').value;\n\n    const { error } = await supabase\n      .from('Vote')\n      .insert([{ name, day, time }]);\n\n    if (error) {\n      console.error('Error submitting vote:', error.message);\n      return;\n    }\n\n    form.reset();\n    loadVotes();\n  });\n\n  loadVotes(); // On page load\n});\n\n\n//# sourceURL=webpack://baldur-vote/./frontend/script.js?\n}");
+"use strict";
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _supabaseClient_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../supabaseClient.js */ \"./supabaseClient.js\");\n/* harmony import */ var _supabaseClient_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_supabaseClient_js__WEBPACK_IMPORTED_MODULE_0__);\n// Import the Supabase client from your local config file\n\n\n// Wait for the DOM to fully load before running the script\ndocument.addEventListener('DOMContentLoaded', () => {\n  const form = document.getElementById('vote-form');         // The vote form\n  const voteList = document.getElementById('vote-list');     // Table body for listing votes\n\n  // Function to load votes from Supabase and display them\n  async function loadVotes() {\n    const { data, error } = await _supabaseClient_js__WEBPACK_IMPORTED_MODULE_0__.supabase.from('votes').select('*');\n\n    if (error) {\n      console.error('Error loading votes:', error);\n      return;\n    }\n\n    // Clear the existing list before reloading\n    voteList.innerHTML = '';\n\n    // Loop through each vote and display in the table\n    data.forEach(vote => {\n      const row = document.createElement('tr');\n\n      // Columns: Name, Day, Time\n      row.innerHTML = `\n        <td>${vote.name}</td>\n        <td>${vote.day}</td>\n        <td>${vote.time}</td>\n        <td><button data-id=\"${vote.id}\" class=\"delete-btn\">Delete</button></td> <!-- Delete button with data-id -->\n      `;\n\n      voteList.appendChild(row);\n    });\n  }\n\n  // Handle form submission to add a new vote\n  form.addEventListener('submit', async (event) => {\n    event.preventDefault();\n\n    // Get values from form fields\n    const name = document.getElementById('name').value;\n    const day = document.getElementById('day').value;\n    const time = document.getElementById('time').value;\n\n    // Insert new vote into Supabase\n    const { error } = await _supabaseClient_js__WEBPACK_IMPORTED_MODULE_0__.supabase.from('votes').insert([{ name, day, time }]);\n\n    if (error) {\n      console.error('Error submitting vote:', error);\n      return;\n    }\n\n    form.reset();     // Reset the form after submission\n    loadVotes();      // Reload the vote list\n  });\n\n  // Event delegation: handle clicks on any delete button\n  voteList.addEventListener('click', async (event) => {\n    if (event.target.classList.contains('delete-btn')) {\n      const id = event.target.getAttribute('data-id');\n\n      // Delete the vote by its unique ID from Supabase\n      const { error } = await _supabaseClient_js__WEBPACK_IMPORTED_MODULE_0__.supabase.from('votes').delete().eq('id', id);\n\n      if (error) {\n        console.error('Error deleting vote:', error);\n        return;\n      }\n\n      loadVotes(); // Refresh the vote list after deletion\n    }\n  });\n\n  // Initial load of all votes when page loads\n  loadVotes();\n});\n\n//# sourceURL=webpack://baldur-vote/./frontend/script.js?\n}");
 
 /***/ }),
 
@@ -672,6 +673,18 @@ eval("{// supabaseClient.js\nconst supabaseClient = __webpack_require__(/*! @sup
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
